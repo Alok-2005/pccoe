@@ -30,48 +30,48 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-blue-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl mb-4">
-            <Cloud className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-400 rounded-2xl mb-4 shadow-yellow-400/40 shadow-lg">
+            <Cloud className="w-10 h-10 text-black" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="text-gray-600 mt-2">Sign in to your Climate Health account</p>
+          <h1 className="text-3xl font-bold text-white">Climate Health</h1>
+          <p className="text-gray-400 mt-2">Sign in to your Climate Health account</p>
         </div>
 
-        {/* Login form */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        {/* Login Form */}
+        <div className="bg-gray-900 rounded-2xl shadow-xl border border-yellow-400/20 p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  placeholder="you@example.com"
+                  className="w-full pl-12 pr-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
+                  placeholder="your@email.com"
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full pl-12 pr-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                   placeholder="••••••••"
                   required
                 />
@@ -81,35 +81,24 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-primary-600 to-primary-700 text-black py-3 rounded-lg font-medium hover:from-primary-700 hover:to-primary-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              className="w-full bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:bg-yellow-500 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-yellow-400/40 shadow-md"
             >
-              {loading ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Signing in...</span>
-                </>
-              ) : (
-                <span>Sign In</span>
-              )}
+              {loading && <Loader2 className="w-5 h-5 animate-spin" />}
+              {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
-              <Link
-                to="/register"
-                className="text-primary-600 hover:text-primary-700 font-medium"
-              >
-                Sign up
-              </Link>
-            </p>
-          </div>
+          <p className="text-center text-gray-400 text-sm mt-6">
+            Don't have an account?{' '}
+            <Link to="/register" className="text-yellow-300 font-semibold hover:text-yellow-400">
+              Sign up
+            </Link>
+          </p>
 
-          {/* Demo credentials */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <p className="text-sm font-medium text-blue-900 mb-2">Demo Accounts:</p>
-            <div className="space-y-1 text-xs text-blue-700">
+          {/* Demo Accounts */}
+          <div className="mt-6 p-4 bg-yellow-400/10 rounded-lg border border-yellow-400/20">
+            <p className="text-xs font-semibold text-yellow-300 mb-2">Demo Accounts:</p>
+            <div className="text-xs text-gray-400 space-y-1">
               <p>Citizen: test@example.com / password123</p>
               <p>Family Admin: sarah.admin@example.com / password123</p>
               <p>NGO Admin: ngo.admin@example.com / password123</p>

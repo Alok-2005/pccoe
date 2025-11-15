@@ -50,31 +50,25 @@ const FamilyDashboard = () => {
     e.preventDefault();
     try {
       const res = await familyAPI.createFamily({
-  name: newFamily.name,
-  members: [],
-  sharedLocation: { city: newFamily.city },
-});
+        name: newFamily.name,
+        members: [],
+        sharedLocation: { city: newFamily.city },
+      });
 
-// Save the new family ID into auth store
-if (user?.id) {
- useAuthStore.setState((state) => {
-  const updatedUser = {
-    ...state.user!,
-    familyId: res.data.family._id,
-  };
+      if (user?.id) {
+        useAuthStore.setState((state) => {
+          const updatedUser = {
+            ...state.user!,
+            familyId: res.data.family._id,
+          };
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          return { user: updatedUser };
+        });
+      }
 
-  localStorage.setItem("user", JSON.stringify(updatedUser));
-
-  return { user: updatedUser };
-});
-
-
-}
-
-toast.success("Family created!");
-setShowCreateFamily(false);
-
-      window.location.reload(); // Refresh to update user's familyId
+      toast.success("Family created!");
+      setShowCreateFamily(false);
+      window.location.reload();
     } catch (error) {
       toast.error('Failed to create family');
     }
@@ -104,7 +98,7 @@ setShowCreateFamily(false);
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-yellow-400" />
       </div>
     );
   }
@@ -113,14 +107,14 @@ setShowCreateFamily(false);
     return (
       <div className="fade-in">
         <div className="text-center py-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary-100 mb-6">
-            <Users className="w-10 h-10 text-primary-600" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-yellow-400/10 mb-6">
+            <Users className="w-10 h-10 text-yellow-400" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">No Family Group</h2>
-          <p className="text-gray-600 mb-6">Create a family group to monitor health risks for your loved ones</p>
+          <h2 className="text-2xl font-bold text-white mb-2">No Family Group</h2>
+          <p className="text-gray-400 mb-6">Create a family group to monitor health risks for your loved ones</p>
           <button
             onClick={() => setShowCreateFamily(true)}
-            className="btn btn-primary"
+            className="bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 font-semibold shadow-yellow-400/40 shadow-md"
           >
             Create Family Group
           </button>
@@ -128,41 +122,41 @@ setShowCreateFamily(false);
 
         {/* Create Family Modal */}
         {showCreateFamily && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl max-w-md w-full p-6">
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+            <div className="bg-gray-900 border border-yellow-400/20 rounded-2xl max-w-md w-full p-6">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-semibold">Create Family Group</h3>
+                <h3 className="text-xl font-semibold text-white">Create Family Group</h3>
                 <button onClick={() => setShowCreateFamily(false)}>
-                  <X className="w-6 h-6 text-gray-400 hover:text-gray-600" />
+                  <X className="w-6 h-6 text-gray-400 hover:text-gray-300" />
                 </button>
               </div>
               <form onSubmit={handleCreateFamily} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Family Name
                   </label>
                   <input
                     type="text"
                     value={newFamily.name}
                     onChange={(e) => setNewFamily({ ...newFamily, name: e.target.value })}
-                    className="input"
+                    className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                     placeholder="The Smith Family"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     City
                   </label>
                   <input
                     type="text"
                     value={newFamily.city}
                     onChange={(e) => setNewFamily({ ...newFamily, city: e.target.value })}
-                    className="input"
+                    className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                     required
                   />
                 </div>
-                <button type="submit" className="w-full btn btn-primary">
+                <button type="submit" className="w-full bg-yellow-400 text-black px-4 py-3 rounded-lg hover:bg-yellow-500 font-semibold shadow-yellow-400/40 shadow-md">
                   Create Family
                 </button>
               </form>
@@ -178,12 +172,12 @@ setShowCreateFamily(false);
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{family.name}</h1>
-          <p className="text-gray-600 mt-1">{family.sharedLocation?.city}</p>
+          <h1 className="text-3xl font-bold text-white">{family.name}</h1>
+          <p className="text-gray-400 mt-1">{family.sharedLocation?.city}</p>
         </div>
         <button
           onClick={() => setShowAddMember(true)}
-          className="btn btn-primary flex items-center space-x-2"
+          className="bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 font-semibold shadow-yellow-400/40 shadow-md flex items-center space-x-2"
         >
           <Plus className="w-5 h-5" />
           <span>Add Member</span>
@@ -192,21 +186,21 @@ setShowCreateFamily(false);
 
       {/* Alerts */}
       {alerts.length > 0 && (
-        <div className="card bg-red-50 border-red-200">
+        <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-6">
           <div className="flex items-start space-x-3">
-            <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+            <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <h3 className="font-semibold text-red-900">Active Health Alerts</h3>
-              <p className="text-sm text-red-700 mt-1">
+              <h3 className="font-semibold text-red-300">Active Health Alerts</h3>
+              <p className="text-sm text-red-200 mt-1">
                 {alerts.length} alert{alerts.length !== 1 ? 's' : ''} requiring attention
               </p>
               <div className="mt-4 space-y-3">
                 {alerts.slice(0, 3).map((alert, index) => (
-                  <div key={index} className="bg-white rounded-lg p-3 border border-red-200">
-                    <p className="text-sm font-medium text-gray-900">
+                  <div key={index} className="bg-gray-900 rounded-lg p-3 border border-red-500/20">
+                    <p className="text-sm font-medium text-white">
                       Risk Level: {alert.riskLevel}/100
                     </p>
-                    <p className="text-xs text-gray-600 mt-1">
+                    <p className="text-xs text-gray-400 mt-1">
                       Affected: {alert.affectedMembers.map((m: any) => m.name).join(', ')}
                     </p>
                   </div>
@@ -220,34 +214,34 @@ setShowCreateFamily(false);
       {/* Family Members */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {family.members.map((member: any, index: number) => (
-          <div key={member._id || index} className="card hover:shadow-lg transition-shadow">
+          <div key={member._id || index} className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6 hover:shadow-lg hover:shadow-yellow-400/10 transition-shadow">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-semibold text-lg">
+                <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center text-black font-semibold text-lg">
                   {member.name.charAt(0)}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">{member.name}</h3>
-                  <p className="text-sm text-gray-600">{member.relation}</p>
+                  <h3 className="font-semibold text-white">{member.name}</h3>
+                  <p className="text-sm text-gray-400">{member.relation}</p>
                 </div>
               </div>
-              <button className="text-gray-400 hover:text-gray-600">
+              <button className="text-gray-400 hover:text-gray-300">
                 <Edit2 className="w-4 h-4" />
               </button>
             </div>
 
             <div className="space-y-3">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Age</span>
-                <span className="font-medium text-gray-900">{member.age} years</span>
+                <span className="text-gray-400">Age</span>
+                <span className="font-medium text-white">{member.age} years</span>
               </div>
 
               {member.healthProfile.comorbidities.length > 0 && (
                 <div>
-                  <p className="text-sm text-gray-600 mb-2">Health Conditions</p>
+                  <p className="text-sm text-gray-400 mb-2">Health Conditions</p>
                   <div className="flex flex-wrap gap-2">
                     {member.healthProfile.comorbidities.map((condition: string, idx: number) => (
-                      <span key={idx} className="badge badge-warning">
+                      <span key={idx} className="bg-orange-500/20 text-orange-300 text-xs px-2 py-1 rounded-full">
                         {condition}
                       </span>
                     ))}
@@ -257,10 +251,10 @@ setShowCreateFamily(false);
 
               {member.healthProfile.allergies.length > 0 && (
                 <div>
-                  <p className="text-sm text-gray-600 mb-2">Allergies</p>
+                  <p className="text-sm text-gray-400 mb-2">Allergies</p>
                   <div className="flex flex-wrap gap-2">
                     {member.healthProfile.allergies.map((allergy: string, idx: number) => (
-                      <span key={idx} className="badge badge-danger">
+                      <span key={idx} className="bg-red-500/20 text-red-300 text-xs px-2 py-1 rounded-full">
                         {allergy}
                       </span>
                     ))}
@@ -269,16 +263,16 @@ setShowCreateFamily(false);
               )}
 
               {member.age < 12 && (
-                <div className="bg-blue-50 rounded-lg p-3 mt-3">
-                  <p className="text-xs text-blue-800">
+                <div className="bg-blue-500/10 rounded-lg p-3 mt-3 border border-blue-500/20">
+                  <p className="text-xs text-blue-300">
                     👶 Child - Extra monitoring recommended
                   </p>
                 </div>
               )}
 
               {member.age > 65 && (
-                <div className="bg-purple-50 rounded-lg p-3 mt-3">
-                  <p className="text-xs text-purple-800">
+                <div className="bg-purple-500/10 rounded-lg p-3 mt-3 border border-purple-500/20">
+                  <p className="text-xs text-purple-300">
                     👴 Senior - Enhanced care needed
                   </p>
                 </div>
@@ -290,49 +284,49 @@ setShowCreateFamily(false);
 
       {/* Add Member Modal */}
       {showAddMember && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 border border-yellow-400/20 rounded-2xl max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold">Add Family Member</h3>
+              <h3 className="text-xl font-semibold text-white">Add Family Member</h3>
               <button onClick={() => setShowAddMember(false)}>
-                <X className="w-6 h-6 text-gray-400 hover:text-gray-600" />
+                <X className="w-6 h-6 text-gray-400 hover:text-gray-300" />
               </button>
             </div>
             <form onSubmit={handleAddMember} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Name
                 </label>
                 <input
                   type="text"
                   value={newMember.name}
                   onChange={(e) => setNewMember({ ...newMember, name: e.target.value })}
-                  className="input"
+                  className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Age
                 </label>
                 <input
                   type="number"
                   value={newMember.age}
                   onChange={(e) => setNewMember({ ...newMember, age: e.target.value })}
-                  className="input"
+                  className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                   min="0"
                   max="150"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Relation
                 </label>
                 <select
                   value={newMember.relation}
                   onChange={(e) => setNewMember({ ...newMember, relation: e.target.value })}
-                  className="input"
+                  className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white"
                   required
                 >
                   <option value="">Select relation</option>
@@ -345,25 +339,26 @@ setShowCreateFamily(false);
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Health Conditions (comma-separated)
                 </label>
                 <input
                   type="text"
                   value={newMember.comorbidities}
                   onChange={(e) => setNewMember({ ...newMember, comorbidities: e.target.value })}
-                  className="input"
+                  className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                   placeholder="Diabetes, Hypertension"
-                /></div>
+                />
+              </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Allergies (comma-separated)
                 </label>
                 <input
                   type="text"
                   value={newMember.allergies}
                   onChange={(e) => setNewMember({ ...newMember, allergies: e.target.value })}
-                  className="input"
+                  className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                   placeholder="Pollen, Nuts"
                 />
               </div>
@@ -371,11 +366,11 @@ setShowCreateFamily(false);
                 <button
                   type="button"
                   onClick={() => setShowAddMember(false)}
-                  className="flex-1 btn btn-secondary"
+                  className="flex-1 px-4 py-3 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 border border-yellow-400/20"
                 >
                   Cancel
                 </button>
-                <button type="submit" className="flex-1 btn btn-primary">
+                <button type="submit" className="flex-1 bg-yellow-400 text-black px-4 py-3 rounded-lg hover:bg-yellow-500 font-semibold shadow-yellow-400/40 shadow-md">
                   Add Member
                 </button>
               </div>

@@ -12,67 +12,57 @@ import Assistant from './pages/Assistant';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
 import AdminDashboard from './pages/AdminDashboard';
-
+import LandingPage from './pages/LandingPage';
+import NotFound from './pages/NotFound';
 // Layout
 import Layout from './components/Layout';
+
 function App() {
-  const { token } = useAuthStore();
+  const { token, user } = useAuthStore();
+  const isAdmin = user?.role === 'ngo_admin';
 
   return (
     <>
       <Router>
         <Routes>
-          {/* Public routes */}
+
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
+
           <Route
             path="/login"
-            element={!token ? <Login /> : <Navigate to="/dashboard" />}
+            element={!token ? <Login /> : <Navigate to="/app/dashboard" replace />}
           />
+
           <Route
             path="/register"
-            element={!token ? <Register /> : <Navigate to="/dashboard" />}
+            element={!token ? <Register /> : <Navigate to="/app/dashboard" replace />}
           />
 
-          {/* Protected routes */}
-          <Route
-            path="/"
-            element={token ? <Layout /> : <Navigate to="/login" />}
-          >
-            <Route index element={<Navigate to="/dashboard" />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="family" element={<FamilyDashboard />} />
-            <Route path="assistant" element={<Assistant />} />
-            <Route path="reports" element={<Reports />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="admin" element={<AdminDashboard />} />
-          </Route>
+          {/* Protected Routes */}
+          <Route path="/app" element={token ? <Layout /> : <Navigate to="/login" replace />}>
+  <Route index element={<Navigate to="dashboard" replace />} />
+
+  <Route path="dashboard" element={<Dashboard />} />
+  <Route path="family" element={<FamilyDashboard />} />
+  <Route path="assistant" element={<Assistant />} />
+  <Route path="reports" element={<Reports />} />
+  <Route path="settings" element={<Settings />} />
+
+  <Route 
+    path="admin"
+    element={isAdmin ? <AdminDashboard /> : <Navigate to="/app/dashboard" replace />}
+  />
+</Route>
+
 
           {/* 404 */}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="*" element={<NotFound />} />
+
         </Routes>
       </Router>
-      
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 4000,
-          style: {
-            background: '#363636',
-            color: '#fff',
-          },
-          success: {
-            iconTheme: {
-              primary: '#22c55e',
-              secondary: '#fff',
-            },
-          },
-          error: {
-            iconTheme: {
-              primary: '#ef4444',
-              secondary: '#fff',
-            },
-          },
-        }}
-      />
+
+      <Toaster />
     </>
   );
 }

@@ -25,31 +25,31 @@ const Layout = () => {
   };
 
   const navItems = [
-    { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { path: '/family', label: 'Family', icon: Users },
-    { path: '/assistant', label: 'AI Assistant', icon: MessageSquare },
-    { path: '/reports', label: 'Reports', icon: FileText },
-    { path: '/settings', label: 'Settings', icon: Settings },
+    { path: '/app/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { path: '/app/family', label: 'Family', icon: Users },
+    { path: '/app/assistant', label: 'AI Assistant', icon: MessageSquare },
+    { path: '/app/reports', label: 'Reports', icon: FileText },
+    { path: '/app/settings', label: 'Settings', icon: Settings },
   ];
 
   if (user?.role === 'ngo_admin') {
-    navItems.push({ path: '/admin', label: 'Admin', icon: Shield });
+    navItems.push({ path: '/app/admin', label: 'Admin', icon: Shield });
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 h-full w-64 bg-white border-r border-gray-200 z-40">
+      <aside className="fixed left-0 top-0 h-full w-64 bg-black border-r border-yellow-400/20 z-40">
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="p-6 border-b border-gray-200">
+          <div className="p-6 border-b border-yellow-400/20">
             <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg p-2">
-                <Cloud className="w-6 h-6 text-white" />
+              <div className="bg-yellow-400 rounded-lg p-2">
+                <Cloud className="w-6 h-6 text-black" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-gray-900">Climate Health</h1>
-                <p className="text-xs text-gray-500">Stay Safe, Stay Healthy</p>
+                <h1 className="text-lg font-bold text-white">Climate Health</h1>
+                <p className="text-xs text-gray-400">Stay Safe, Stay Healthy</p>
               </div>
             </div>
           </div>
@@ -65,8 +65,8 @@ const Layout = () => {
                   className={({ isActive }) =>
                     `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
                       isActive
-                        ? 'bg-primary-50 text-primary-700 font-medium'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                        ? 'bg-yellow-400/20 text-yellow-300 font-medium'
+                        : 'text-gray-400 hover:bg-yellow-400/10 hover:text-yellow-300'
                     }`
                   }
                 >
@@ -78,21 +78,21 @@ const Layout = () => {
           </nav>
 
           {/* User section */}
-          <div className="p-4 border-t border-gray-200">
-            <div className="flex items-center space-x-3 px-4 py-3 rounded-lg bg-gray-50">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-semibold">
+          <div className="p-4 border-t border-yellow-400/20">
+            <div className="flex items-center space-x-3 px-4 py-3 rounded-lg bg-yellow-400/10">
+              <div className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center text-black font-semibold">
                 {user?.name.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
+                <p className="text-sm font-medium text-white truncate">
                   {user?.name}
                 </p>
-                <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+                <p className="text-xs text-gray-400 truncate">{user?.email}</p>
               </div>
             </div>
             <button
               onClick={handleLogout}
-              className="mt-3 w-full flex items-center justify-center space-x-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-all"
+              className="mt-3 w-full flex items-center justify-center space-x-2 px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 rounded-lg transition-all"
             >
               <LogOut className="w-4 h-4" />
               <span>Logout</span>
@@ -102,7 +102,7 @@ const Layout = () => {
       </aside>
 
       {/* Main content */}
-      <main className="ml-64 min-h-screen">
+      <main className="ml-64 min-h-screen bg-black">
         <div className="p-8">
           <Outlet />
         </div>

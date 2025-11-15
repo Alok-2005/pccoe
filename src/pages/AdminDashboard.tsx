@@ -40,7 +40,7 @@ const AdminDashboard = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-yellow-400" />
       </div>
     );
   }
@@ -55,62 +55,62 @@ const AdminDashboard = () => {
     <div className="space-y-6 fade-in">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-        <p className="text-gray-600 mt-1">System overview and analytics</p>
+        <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
+        <p className="text-gray-400 mt-1">System overview and analytics</p>
       </div>
 
       {/* Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
-              <Users className="w-6 h-6 text-blue-600" />
+            <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <Users className="w-6 h-6 text-blue-400" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Total Users</p>
-              <h3 className="text-2xl font-bold text-gray-900">
+              <p className="text-sm text-gray-400">Total Users</p>
+              <h3 className="text-2xl font-bold text-white">
                 {dashboardData.statistics.totalUsers}
               </h3>
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center">
-              <Users className="w-6 h-6 text-green-600" />
+            <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <Users className="w-6 h-6 text-green-400" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Family Groups</p>
-              <h3 className="text-2xl font-bold text-gray-900">
+              <p className="text-sm text-gray-400">Family Groups</p>
+              <h3 className="text-2xl font-bold text-white">
                 {dashboardData.statistics.totalFamilies}
               </h3>
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 text-purple-600" />
+            <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <TrendingUp className="w-6 h-6 text-purple-400" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Predictions</p>
-              <h3 className="text-2xl font-bold text-gray-900">
+              <p className="text-sm text-gray-400">Predictions</p>
+              <h3 className="text-2xl font-bold text-white">
                 {dashboardData.statistics.totalPredictions}
               </h3>
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center">
-              <FileText className="w-6 h-6 text-orange-600" />
+            <div className="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center">
+              <FileText className="w-6 h-6 text-orange-400" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Reports</p>
-              <h3 className="text-2xl font-bold text-gray-900">
+              <p className="text-sm text-gray-400">Reports</p>
+              <h3 className="text-2xl font-bold text-white">
                 {dashboardData.statistics.totalReports}
               </h3>
             </div>
@@ -119,25 +119,25 @@ const AdminDashboard = () => {
       </div>
 
       {/* High Risk Alerts */}
-      <div className="card">
+      <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
         <div className="flex items-center space-x-3 mb-6">
-          <AlertTriangle className="w-6 h-6 text-red-600" />
-          <h2 className="text-xl font-semibold text-gray-900">High Risk Alerts (24h)</h2>
+          <AlertTriangle className="w-6 h-6 text-red-400" />
+          <h2 className="text-xl font-semibold text-white">High Risk Alerts (24h)</h2>
         </div>
 
         <div className="space-y-3">
           {dashboardData.highRiskAlerts.slice(0, 5).map((alert: any, index: number) => (
             <div
               key={index}
-              className="flex items-center justify-between p-4 bg-red-50 border border-red-200 rounded-lg"
+              className="flex items-center justify-between p-4 bg-red-500/10 border border-red-500/20 rounded-lg"
             >
               <div className="flex-1">
-                <p className="font-medium text-gray-900">{alert.userId.name}</p>
-                <p className="text-sm text-gray-600">{alert.userId.location.city}</p>
+                <p className="font-medium text-white">{alert.userId.name}</p>
+                <p className="text-sm text-gray-400">{alert.userId.location.city}</p>
               </div>
               <div className="text-right">
-                <p className="text-2xl font-bold text-red-600">{alert.riskScores.overall}</p>
-                <p className="text-xs text-gray-600">Risk Score</p>
+                <p className="text-2xl font-bold text-red-400">{alert.riskScores.overall}</p>
+                <p className="text-xs text-gray-400">Risk Score</p>
               </div>
             </div>
           ))}
@@ -145,47 +145,47 @@ const AdminDashboard = () => {
       </div>
 
       {/* Regional Risk Heatmap */}
-      <div className="card">
+      <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
         <div className="flex items-center space-x-3 mb-6">
-          <MapPin className="w-6h-6 text-primary-600" />
-          <h2 className="text-xl font-semibold text-gray-900">Regional Risk Heatmap</h2>
+          <MapPin className="w-6 h-6 text-yellow-400" />
+          <h2 className="text-xl font-semibold text-white">Regional Risk Heatmap</h2>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-200">
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">City</th>
-                <th className="text-center py-3 px-4 text-sm font-semibold text-gray-900">Overall Risk</th>
-                <th className="text-center py-3 px-4 text-sm font-semibold text-gray-900">Heatwave</th>
-                <th className="text-center py-3 px-4 text-sm font-semibold text-gray-900">Air Quality</th>
-                <th className="text-center py-3 px-4 text-sm font-semibold text-gray-900">UV Exposure</th>
-                <th className="text-center py-3 px-4 text-sm font-semibold text-gray-900">Disease</th>
-                <th className="text-center py-3 px-4 text-sm font-semibold text-gray-900">Data Points</th>
+              <tr className="border-b border-yellow-400/20">
+                <th className="text-left py-3 px-4 text-sm font-semibold text-white">City</th>
+                <th className="text-center py-3 px-4 text-sm font-semibold text-white">Overall Risk</th>
+                <th className="text-center py-3 px-4 text-sm font-semibold text-white">Heatwave</th>
+                <th className="text-center py-3 px-4 text-sm font-semibold text-white">Air Quality</th>
+                <th className="text-center py-3 px-4 text-sm font-semibold text-white">UV Exposure</th>
+                <th className="text-center py-3 px-4 text-sm font-semibold text-white">Disease</th>
+                <th className="text-center py-3 px-4 text-sm font-semibold text-white">Data Points</th>
               </tr>
             </thead>
             <tbody>
               {heatmapData.map((item: any, index: number) => (
-                <tr key={index} className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="py-3 px-4 text-sm font-medium text-gray-900">{item.city}</td>
+                <tr key={index} className="border-b border-yellow-400/10 hover:bg-yellow-400/5">
+                  <td className="py-3 px-4 text-sm font-medium text-white">{item.city}</td>
                   <td className="py-3 px-4 text-center">
                     <span className={`inline-flex items-center justify-center w-16 h-8 rounded-full text-white text-sm font-semibold ${getRiskColor(item.riskScores.overall)}`}>
                       {item.riskScores.overall}
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-center text-sm text-gray-600">
+                  <td className="py-3 px-4 text-center text-sm text-gray-400">
                     {item.riskScores.heatwave}
                   </td>
-                  <td className="py-3 px-4 text-center text-sm text-gray-600">
+                  <td className="py-3 px-4 text-center text-sm text-gray-400">
                     {item.riskScores.airQuality}
                   </td>
-                  <td className="py-3 px-4 text-center text-sm text-gray-600">
+                  <td className="py-3 px-4 text-center text-sm text-gray-400">
                     {item.riskScores.uvExposure}
                   </td>
-                  <td className="py-3 px-4 text-center text-sm text-gray-600">
+                  <td className="py-3 px-4 text-center text-sm text-gray-400">
                     {item.riskScores.disease}
                   </td>
-                  <td className="py-3 px-4 text-center text-sm text-gray-600">
+                  <td className="py-3 px-4 text-center text-sm text-gray-400">
                     {item.dataPoints}
                   </td>
                 </tr>
@@ -196,19 +196,19 @@ const AdminDashboard = () => {
       </div>
 
       {/* Recent Activity */}
-      <div className="card">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Recent Activity</h2>
+      <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
+        <h2 className="text-xl font-semibold text-white mb-6">Recent Activity</h2>
         <div className="space-y-4">
           {dashboardData.recentActivity.map((activity: any, index: number) => (
-            <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
-              <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
-                <TrendingUp className="w-5 h-5 text-primary-600" />
+            <div key={index} className="flex items-start space-x-4 p-4 bg-black rounded-lg border border-yellow-400/10">
+              <div className="w-10 h-10 rounded-full bg-yellow-400/20 flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-5 h-5 text-yellow-400" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">
+                <p className="text-sm font-medium text-white">
                   Risk prediction for {activity.userId.name}
                 </p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-400">
                   {activity.location.city} • Risk: {activity.riskScores.overall}/100
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
@@ -217,10 +217,10 @@ const AdminDashboard = () => {
               </div>
               <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
                 activity.riskScores.overall >= 75 
-                  ? 'bg-red-100 text-red-800'
+                  ? 'bg-red-500/20 text-red-300'
                   : activity.riskScores.overall >= 50
-                  ? 'bg-orange-100 text-orange-800'
-                  : 'bg-green-100 text-green-800'
+                  ? 'bg-orange-500/20 text-orange-300'
+                  : 'bg-green-500/20 text-green-300'
               }`}>
                 {activity.riskScores.overall >= 75 ? 'High' : activity.riskScores.overall >= 50 ? 'Moderate' : 'Low'}
               </div>
@@ -230,27 +230,27 @@ const AdminDashboard = () => {
       </div>
 
       {/* City Risk Breakdown */}
-      <div className="card">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">City Risk Analysis (7 Days)</h2>
+      <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
+        <h2 className="text-xl font-semibold text-white mb-6">City Risk Analysis (7 Days)</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {dashboardData.cityRisks.map((city: any, index: number) => (
-            <div key={index} className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+            <div key={index} className="p-4 border border-yellow-400/20 rounded-lg hover:shadow-md hover:shadow-yellow-400/10 transition-shadow bg-black">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-gray-900">{city._id}</h3>
+                <h3 className="font-semibold text-white">{city._id}</h3>
                 <span className={`w-3 h-3 rounded-full ${getRiskColor(city.avgRisk)}`} />
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Avg Risk</span>
-                  <span className="font-semibold text-gray-900">{Math.round(city.avgRisk)}</span>
+                  <span className="text-gray-400">Avg Risk</span>
+                  <span className="font-semibold text-white">{Math.round(city.avgRisk)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Max Risk</span>
-                  <span className="font-semibold text-gray-900">{Math.round(city.maxRisk)}</span>
+                  <span className="text-gray-400">Max Risk</span>
+                  <span className="font-semibold text-white">{Math.round(city.maxRisk)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Data Points</span>
-                  <span className="font-semibold text-gray-900">{city.count}</span>
+                  <span className="text-gray-400">Data Points</span>
+                  <span className="font-semibold text-white">{city.count}</span>
                 </div>
               </div>
             </div>

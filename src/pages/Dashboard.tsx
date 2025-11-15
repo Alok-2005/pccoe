@@ -14,8 +14,6 @@ import {
 import { 
   LineChart, 
   Line, 
-  AreaChart, 
-  Area,
   BarChart,
   Bar,
   XAxis, 
@@ -82,9 +80,9 @@ const Dashboard = () => {
   };
 
   const getRiskColor = (score: number) => {
-    if (score >= 75) return 'text-red-600 bg-red-50';
-    if (score >= 50) return 'text-orange-600 bg-orange-50';
-    return 'text-green-600 bg-green-50';
+    if (score >= 75) return 'text-red-400 bg-red-500/10';
+    if (score >= 50) return 'text-orange-400 bg-orange-500/10';
+    return 'text-green-400 bg-green-500/10';
   };
 
   const getRiskLabel = (score: number) => {
@@ -96,7 +94,7 @@ const Dashboard = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-yellow-400" />
       </div>
     );
   }
@@ -114,10 +112,10 @@ const Dashboard = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-white">
             Welcome back, {user?.name}!
           </h1>
-          <p className="text-gray-600 mt-1">
+          <p className="text-gray-400 mt-1">
             {user?.location.city} • {format(new Date(), 'EEEE, MMMM d, yyyy')}
           </p>
         </div>
@@ -125,7 +123,7 @@ const Dashboard = () => {
           <button
             onClick={handleRefresh}
             disabled={refreshing}
-            className="btn btn-secondary flex items-center space-x-2"
+            className="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 border border-yellow-400/20 flex items-center space-x-2"
           >
             <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
@@ -133,7 +131,7 @@ const Dashboard = () => {
           <button
             onClick={handleGenerateReport}
             disabled={generating}
-            className="btn btn-primary flex items-center space-x-2"
+            className="px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500 font-semibold flex items-center space-x-2 shadow-yellow-400/40 shadow-md"
           >
             {generating ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -146,24 +144,24 @@ const Dashboard = () => {
       </div>
 
       {/* Risk Score Card */}
-      <div className="bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl p-8 text-black shadow-lg">
+      <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl p-8 text-black shadow-yellow-400/40 shadow-lg">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-primary-100 text-sm font-medium">Overall Health Risk</p>
+            <p className="text-black/70 text-sm font-medium">Overall Health Risk</p>
             <h2 className="text-5xl font-bold mt-2">
               {prediction?.riskScores.overall}/100
             </h2>
-            <p className="mt-2 text-primary-100">
+            <p className="mt-2 text-black/70">
               {getRiskLabel(prediction?.riskScores.overall)}
             </p>
           </div>
-          <div className="w-32 h-32 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+          <div className="w-32 h-32 rounded-full bg-black/10 flex items-center justify-center backdrop-blur-sm">
             <AlertTriangle className="w-16 h-16" />
           </div>
         </div>
         
-        <div className="mt-6 pt-6 border-t border-white/20">
-          <p className="text-sm text-primary-50">
+        <div className="mt-6 pt-6 border-t border-black/20">
+          <p className="text-sm text-black/80">
             {prediction?.explanation}
           </p>
         </div>
@@ -171,66 +169,66 @@ const Dashboard = () => {
 
       {/* Environmental Conditions */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Temperature</p>
-              <h3 className="text-2xl font-bold text-gray-900 mt-1">
+              <p className="text-sm text-gray-400">Temperature</p>
+              <h3 className="text-2xl font-bold text-white mt-1">
                 {prediction?.environmentData.temperature}°C
               </h3>
             </div>
-            <div className="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center">
-              <Cloud className="w-6 h-6 text-orange-600" />
+            <div className="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center">
+              <Cloud className="w-6 h-6 text-orange-400" />
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Air Quality Index</p>
-              <h3 className="text-2xl font-bold text-gray-900 mt-1">
+              <p className="text-sm text-gray-400">Air Quality Index</p>
+              <h3 className="text-2xl font-bold text-white mt-1">
                 {prediction?.environmentData.aqi}
               </h3>
             </div>
-            <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
-              <Wind className="w-6 h-6 text-blue-600" />
+            <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <Wind className="w-6 h-6 text-blue-400" />
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">UV Index</p>
-              <h3 className="text-2xl font-bold text-gray-900 mt-1">
+              <p className="text-sm text-gray-400">UV Index</p>
+              <h3 className="text-2xl font-bold text-white mt-1">
                 {prediction?.environmentData.uvIndex}
               </h3>
             </div>
-            <div className="w-12 h-12 rounded-lg bg-yellow-100 flex items-center justify-center">
-              <Sun className="w-6 h-6 text-yellow-600" />
+            <div className="w-12 h-12 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+              <Sun className="w-6 h-6 text-yellow-400" />
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Humidity</p>
-              <h3 className="text-2xl font-bold text-gray-900 mt-1">
+              <p className="text-sm text-gray-400">Humidity</p>
+              <h3 className="text-2xl font-bold text-white mt-1">
                 {prediction?.environmentData.humidity}%
               </h3>
             </div>
-            <div className="w-12 h-12 rounded-lg bg-cyan-100 flex items-center justify-center">
-              <Droplets className="w-6 h-6 text-cyan-600" />
+            <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+              <Droplets className="w-6 h-6 text-cyan-400" />
             </div>
           </div>
         </div>
       </div>
 
       {/* Risk Breakdown */}
-      <div className="card">
-        <h3 className="text-lg font-semibold text-gray-900 mb-6">Risk Breakdown</h3>
+      <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
+        <h3 className="text-lg font-semibold text-white mb-6">Risk Breakdown</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { label: 'Heatwave', score: prediction?.riskScores.heatwave },
@@ -240,10 +238,10 @@ const Dashboard = () => {
           ].map((item) => (
             <div key={item.label} className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">{item.label}</span>
-                <span className="font-semibold text-gray-900">{item.score}</span>
+                <span className="text-gray-400">{item.label}</span>
+                <span className="font-semibold text-white">{item.score}</span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-gray-800 rounded-full h-2">
                 <div
                   className={`h-2 rounded-full transition-all ${
                     item.score >= 75
@@ -263,25 +261,26 @@ const Dashboard = () => {
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Risk Trends */}
-        <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Risk Trends (7 Days)</h3>
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
+          <h3 className="text-lg font-semibold text-white mb-6">Risk Trends (7 Days)</h3>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis dataKey="date" stroke="#64748b" />
-              <YAxis stroke="#64748b" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+              <XAxis dataKey="date" stroke="#888" />
+              <YAxis stroke="#888" />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: '#fff', 
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '8px'
+                  backgroundColor: '#1f2937', 
+                  border: '1px solid rgba(250, 204, 21, 0.2)',
+                  borderRadius: '8px',
+                  color: '#fff'
                 }} 
               />
               <Legend />
               <Line 
                 type="monotone" 
                 dataKey="overall" 
-                stroke="#2563eb" 
+                stroke="#facc15" 
                 strokeWidth={2}
                 name="Overall Risk"
               />
@@ -304,8 +303,8 @@ const Dashboard = () => {
         </div>
 
         {/* Risk Distribution */}
-        <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Current Risk Distribution</h3>
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
+          <h3 className="text-lg font-semibold text-white mb-6">Current Risk Distribution</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={[
               { name: 'Heatwave', value: prediction?.riskScores.heatwave },
@@ -313,25 +312,26 @@ const Dashboard = () => {
               { name: 'UV Exposure', value: prediction?.riskScores.uvExposure },
               { name: 'Disease', value: prediction?.riskScores.disease },
             ]}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis dataKey="name" stroke="#64748b" />
-              <YAxis stroke="#64748b" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+              <XAxis dataKey="name" stroke="#888" />
+              <YAxis stroke="#888" />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: '#fff', 
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '8px'
+                  backgroundColor: '#1f2937', 
+                  border: '1px solid rgba(250, 204, 21, 0.2)',
+                  borderRadius: '8px',
+                  color: '#fff'
                 }} 
               />
-              <Bar dataKey="value" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+              <Bar dataKey="value" fill="#facc15" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
       {/* Recommendations */}
-      <div className="card">
-        <h3 className="text-lg font-semibold text-gray-900 mb-6">
+      <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
+        <h3 className="text-lg font-semibold text-white mb-6">
           Personalized Recommendations
         </h3>
         <div className="space-y-4">
@@ -340,29 +340,29 @@ const Dashboard = () => {
               key={index}
               className={`p-4 rounded-lg border-l-4 ${
                 rec.priority === 'critical'
-                  ? 'bg-red-50 border-red-500'
+                  ? 'bg-red-500/10 border-red-500'
                   : rec.priority === 'high'
-                  ? 'bg-orange-50 border-orange-500'
+                  ? 'bg-orange-500/10 border-orange-500'
                   : rec.priority === 'medium'
-                  ? 'bg-blue-50 border-blue-500'
-                  : 'bg-gray-50 border-gray-400'
+                  ? 'bg-blue-500/10 border-blue-500'
+                  : 'bg-gray-800 border-gray-600'
               }`}
             >
               <div className="flex items-start space-x-3">
                 <div className={`mt-0.5 px-2 py-1 rounded text-xs font-semibold uppercase ${
                   rec.priority === 'critical'
-                    ? 'bg-red-100 text-red-800'
+                    ? 'bg-red-500/20 text-red-300'
                     : rec.priority === 'high'
-                    ? 'bg-orange-100 text-orange-800'
+                    ? 'bg-orange-500/20 text-orange-300'
                     : rec.priority === 'medium'
-                    ? 'bg-blue-100 text-blue-800'
-                    : 'bg-gray-200 text-gray-800'
+                    ? 'bg-blue-500/20 text-blue-300'
+                    : 'bg-gray-700 text-gray-300'
                 }`}>
                   {rec.priority}
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900">{rec.category}</h4>
-                  <p className="text-sm text-gray-600 mt-1">{rec.action}</p>
+                  <h4 className="font-semibold text-white">{rec.category}</h4>
+                  <p className="text-sm text-gray-400 mt-1">{rec.action}</p>
                 </div>
               </div>
             </div>
@@ -373,38 +373,38 @@ const Dashboard = () => {
       {/* Statistics */}
       {stats && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="card">
+          <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-blue-600" />
+              <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-blue-400" />
               </div>
               <div>
-                <p className="text-sm text-gray-600">Average Risk</p>
-                <h4 className="text-xl font-bold text-gray-900">{stats.averageRisk}</h4>
+                <p className="text-sm text-gray-400">Average Risk</p>
+                <h4 className="text-xl font-bold text-white">{stats.averageRisk}</h4>
               </div>
             </div>
           </div>
 
-          <div className="card">
+          <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
-                <AlertTriangle className="w-5 h-5 text-purple-600" />
+              <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-purple-400" />
               </div>
               <div>
-                <p className="text-sm text-gray-600">Trend</p>
-                <h4 className="text-xl font-bold text-gray-900 capitalize">{stats.trend}</h4>
+                <p className="text-sm text-gray-400">Trend</p>
+                <h4 className="text-xl font-bold text-white capitalize">{stats.trend}</h4>
               </div>
             </div>
           </div>
 
-          <div className="card">
+          <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
-                <Cloud className="w-5 h-5 text-green-600" />
+              <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                <Cloud className="w-5 h-5 text-green-400" />
               </div>
               <div>
-                <p className="text-sm text-gray-600">Predictions</p>
-                <h4 className="text-xl font-bold text-gray-900">{stats.totalPredictions}</h4>
+                <p className="text-sm text-gray-400">Predictions</p>
+                <h4 className="text-xl font-bold text-white">{stats.totalPredictions}</h4>
               </div>
             </div>
           </div>

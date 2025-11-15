@@ -111,20 +111,20 @@ const Assistant = () => {
   return (
     <div className="h-[calc(100vh-8rem)] flex flex-col fade-in">
       {/* Header */}
-      <div className="bg-white rounded-t-2xl border border-gray-200 p-6">
+      <div className="bg-gray-900 rounded-t-2xl border border-yellow-400/20 p-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center">
-              <Bot className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center">
+              <Bot className="w-6 h-6 text-black" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-gray-900">AI Health Assistant</h1>
-              <p className="text-sm text-gray-600">Climate-smart health guidance</p>
+              <h1 className="text-xl font-semibold text-white">AI Health Assistant</h1>
+              <p className="text-sm text-gray-400">Climate-smart health guidance</p>
             </div>
           </div>
           <button
             onClick={handleNewConversation}
-            className="btn btn-secondary flex items-center space-x-2"
+            className="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 border border-yellow-400/20 flex items-center space-x-2"
           >
             <RefreshCw className="w-4 h-4" />
             <span>New Chat</span>
@@ -133,7 +133,7 @@ const Assistant = () => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 bg-gray-50 border-x border-gray-200 overflow-y-auto p-6 space-y-4">
+      <div className="flex-1 bg-black border-x border-yellow-400/20 overflow-y-auto p-6 space-y-4">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -148,12 +148,12 @@ const Assistant = () => {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                   message.role === 'user'
-                    ? 'bg-primary-600'
+                    ? 'bg-yellow-400'
                     : 'bg-gradient-to-br from-purple-500 to-purple-600'
                 }`}
               >
                 {message.role === 'user' ? (
-                  <User className="w-4 h-4 text-white" />
+                  <User className="w-4 h-4 text-black" />
                 ) : (
                   <Bot className="w-4 h-4 text-white" />
                 )}
@@ -164,8 +164,8 @@ const Assistant = () => {
                 <div
                   className={`rounded-2xl px-4 py-3 ${
                     message.role === 'user'
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-white border border-gray-200 text-gray-900'
+                      ? 'bg-yellow-400 text-black'
+                      : 'bg-gray-900 border border-yellow-400/20 text-white'
                   }`}
                 >
                   <p className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -179,13 +179,13 @@ const Assistant = () => {
                     {message.evidence.map((ev, idx) => (
                       <div
                         key={idx}
-                        className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs"
+                        className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 text-xs"
                       >
                         <div className="flex items-start space-x-2">
-                          <Lightbulb className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                          <Lightbulb className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
                           <div>
-                            <p className="font-semibold text-blue-900">{ev.source}</p>
-                            <p className="text-blue-700 mt-1">{ev.snippet}</p>
+                            <p className="font-semibold text-blue-300">{ev.source}</p>
+                            <p className="text-blue-200 mt-1">{ev.snippet}</p>
                           </div>
                         </div>
                       </div>
@@ -207,7 +207,7 @@ const Assistant = () => {
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
                 <Bot className="w-4 h-4 text-white" />
               </div>
-              <div className="bg-white border border-gray-200 rounded-2xl px-4 py-3">
+              <div className="bg-gray-900 border border-yellow-400/20 rounded-2xl px-4 py-3">
                 <div className="flex space-x-2">
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100" />
@@ -223,14 +223,14 @@ const Assistant = () => {
 
       {/* Suggested Questions */}
       {messages.length <= 1 && (
-        <div className="bg-gray-50 border-x border-gray-200 px-6 pb-4">
-          <p className="text-sm text-gray-600 mb-3">Suggested questions:</p>
+        <div className="bg-black border-x border-yellow-400/20 px-6 pb-4">
+          <p className="text-sm text-gray-400 mb-3">Suggested questions:</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {suggestedQuestions.map((question, index) => (
               <button
                 key={index}
                 onClick={() => setInput(question)}
-                className="text-left text-sm bg-white border border-gray-200 rounded-lg px-4 py-3 hover:bg-gray-50 hover:border-primary-300 transition-all"
+                className="text-left text-sm bg-gray-900 border border-yellow-400/20 rounded-lg px-4 py-3 hover:bg-gray-800 hover:border-yellow-400/40 transition-all text-gray-300"
               >
                 {question}
               </button>
@@ -240,7 +240,7 @@ const Assistant = () => {
       )}
 
       {/* Input */}
-      <div className="bg-white rounded-b-2xl border border-gray-200 p-6">
+      <div className="bg-gray-900 rounded-b-2xl border border-yellow-400/20 p-6">
         <div className="flex space-x-3">
           <textarea
             value={input}
@@ -248,13 +248,13 @@ const Assistant = () => {
             onKeyPress={handleKeyPress}
             placeholder="Ask me anything about climate and health..."
             rows={1}
-            className="flex-1 resize-none border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="flex-1 resize-none bg-black border border-yellow-400/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
             disabled={loading}
           />
           <button
             onClick={handleSend}
             disabled={loading || !input.trim()}
-            className="btn btn-primary px-6 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-yellow-400 text-black px-6 rounded-lg hover:bg-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed font-semibold shadow-yellow-400/40 shadow-md"
           >
             {loading ? (
               <Loader2 className="w-5 h-5 animate-spin" />

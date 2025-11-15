@@ -58,15 +58,15 @@ const Reports = () => {
   };
 
   const getRiskColor = (score: number) => {
-    if (score >= 75) return 'text-red-600 bg-red-50';
-    if (score >= 50) return 'text-orange-600 bg-orange-50';
-    return 'text-green-600 bg-green-50';
+    if (score >= 75) return 'text-red-400 bg-red-500/10';
+    if (score >= 50) return 'text-orange-400 bg-orange-500/10';
+    return 'text-green-400 bg-green-500/10';
   };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-yellow-400" />
       </div>
     );
   }
@@ -76,13 +76,13 @@ const Reports = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Health Reports</h1>
-          <p className="text-gray-600 mt-1">Download and review your personalized health reports</p>
+          <h1 className="text-3xl font-bold text-white">Health Reports</h1>
+          <p className="text-gray-400 mt-1">Download and review your personalized health reports</p>
         </div>
         <button
           onClick={handleGenerateReport}
           disabled={generating}
-          className="btn btn-primary flex items-center space-x-2"
+          className="bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 font-semibold shadow-yellow-400/40 shadow-md flex items-center space-x-2"
         >
           {generating ? (
             <>
@@ -100,26 +100,26 @@ const Reports = () => {
 
       {/* Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
-              <FileText className="w-6 h-6 text-blue-600" />
+            <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <FileText className="w-6 h-6 text-blue-400" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Total Reports</p>
-              <h3 className="text-2xl font-bold text-gray-900">{reports.length}</h3>
+              <p className="text-sm text-gray-400">Total Reports</p>
+              <h3 className="text-2xl font-bold text-white">{reports.length}</h3>
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 text-green-600" />
+            <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <TrendingUp className="w-6 h-6 text-green-400" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">This Month</p>
-              <h3 className="text-2xl font-bold text-gray-900">
+              <p className="text-sm text-gray-400">This Month</p>
+              <h3 className="text-2xl font-bold text-white">
                 {reports.filter(r => 
                   new Date(r.createdAt).getMonth() === new Date().getMonth()
                 ).length}
@@ -128,14 +128,14 @@ const Reports = () => {
           </div>
         </div>
 
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
-              <Download className="w-6 h-6 text-purple-600" />
+            <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <Download className="w-6 h-6 text-purple-400" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Total Downloads</p>
-              <h3 className="text-2xl font-bold text-gray-900">
+              <p className="text-sm text-gray-400">Total Downloads</p>
+              <h3 className="text-2xl font-bold text-white">
                 {reports.reduce((sum, r) => sum + r.downloadCount, 0)}
               </h3>
             </div>
@@ -145,30 +145,30 @@ const Reports = () => {
 
       {/* Reports List */}
       {reports.length === 0 ? (
-        <div className="card text-center py-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 mb-6">
-            <FileText className="w-10 h-10 text-gray-400" />
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl text-center py-16">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-yellow-400/10 mb-6">
+            <FileText className="w-10 h-10 text-yellow-400" />
           </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No Reports Yet</h3>
-          <p className="text-gray-600 mb-6">Generate your first health report to get started</p>
-          <button onClick={handleGenerateReport} className="btn btn-primary">
+          <h3 className="text-xl font-semibold text-white mb-2">No Reports Yet</h3>
+          <p className="text-gray-400 mb-6">Generate your first health report to get started</p>
+          <button onClick={handleGenerateReport} className="bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 font-semibold shadow-yellow-400/40 shadow-md">
             Generate Report
           </button>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reports.map((report) => (
-            <div key={report._id} className="card hover:shadow-lg transition-shadow">
+            <div key={report._id} className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6 hover:shadow-lg hover:shadow-yellow-400/10 transition-shadow">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
-                    <FileText className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 rounded-lg bg-yellow-400 flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-black" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">
+                    <h3 className="font-semibold text-white">
                       {report.reportType.charAt(0).toUpperCase() + report.reportType.slice(1)} Report
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-400">
                       {format(new Date(report.generatedAt), 'MMM dd, yyyy')}
                     </p>
                   </div>
@@ -178,7 +178,7 @@ const Reports = () => {
               <div className="space-y-3">
                 {/* Risk Score */}
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Overall Risk</span>
+                  <span className="text-sm text-gray-400">Overall Risk</span>
                   <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getRiskColor(report.summary.overallRisk)}`}>
                     {report.summary.overallRisk}/100
                   </span>
@@ -187,10 +187,10 @@ const Reports = () => {
                 {/* Top Risks */}
                 {report.summary.topRisks.length > 0 && (
                   <div>
-                    <p className="text-sm text-gray-600 mb-2">Key Risks</p>
+                    <p className="text-sm text-gray-400 mb-2">Key Risks</p>
                     <div className="flex flex-wrap gap-2">
                       {report.summary.topRisks.slice(0, 3).map((risk: string, idx: number) => (
-                        <span key={idx} className="badge badge-warning text-xs">
+                        <span key={idx} className="bg-orange-500/20 text-orange-300 text-xs px-2 py-1 rounded-full">
                           {risk}
                         </span>
                       ))}
@@ -199,21 +199,21 @@ const Reports = () => {
                 )}
 
                 {/* Stats */}
-                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-gray-200">
+                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-yellow-400/20">
                   <div>
-                    <p className="text-xs text-gray-600">Downloads</p>
-                    <p className="text-sm font-semibold text-gray-900">{report.downloadCount}</p>
+                    <p className="text-xs text-gray-400">Downloads</p>
+                    <p className="text-sm font-semibold text-white">{report.downloadCount}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-600">Eco Score</p>
-                    <p className="text-sm font-semibold text-gray-900">{report.summary.ecoScore}</p>
+                    <p className="text-xs text-gray-400">Eco Score</p>
+                    <p className="text-sm font-semibold text-white">{report.summary.ecoScore}</p>
                   </div>
                 </div>
 
                 {/* Actions */}
                 <button
                   onClick={() => handleDownload(report._id, format(new Date(report.generatedAt), 'yyyy-MM-dd'))}
-                  className="w-full btn btn-primary flex items-center justify-center space-x-2 mt-4"
+                  className="w-full bg-yellow-400 text-black px-4 py-2 rounded-lg hover:bg-yellow-500 font-semibold flex items-center justify-center space-x-2 mt-4 shadow-yellow-400/40 shadow-md"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download PDF</span>

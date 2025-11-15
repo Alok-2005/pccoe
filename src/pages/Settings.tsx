@@ -59,69 +59,69 @@ const Settings = () => {
     <div className="max-w-4xl mx-auto space-y-6 fade-in">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-1">Manage your account and preferences</p>
+        <h1 className="text-3xl font-bold text-white">Settings</h1>
+        <p className="text-gray-400 mt-1">Manage your account and preferences</p>
       </div>
 
       <form onSubmit={handleProfileUpdate} className="space-y-6">
         {/* Personal Information */}
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-              <User className="w-5 h-5 text-blue-600" />
+            <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <User className="w-5 h-5 text-blue-400" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900">Personal Information</h2>
+            <h2 className="text-xl font-semibold text-white">Personal Information</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Full Name
               </label>
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="input"
+                className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Email
               </label>
               <input
                 type="email"
                 value={user?.email}
-                className="input bg-gray-100"
+                className="w-full px-4 py-3 bg-gray-800 border border-yellow-400/20 rounded-lg text-gray-500"
                 disabled
               />
               <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Age
               </label>
               <input
                 type="number"
                 value={formData.age}
                 onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                className="input"
+                className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                 min="0"
                 max="150"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Gender
               </label>
               <select
                 value={formData.gender}
                 onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                className="input"
+                className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white"
               >
                 <option value="">Select gender</option>
                 <option value="male">Male</option>
@@ -134,23 +134,23 @@ const Settings = () => {
         </div>
 
         {/* Location */}
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
-              <MapPin className="w-5 h-5 text-green-600" />
+            <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <MapPin className="w-5 h-5 text-green-400" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900">Location</h2>
+            <h2 className="text-xl font-semibold text-white">Location</h2>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               City
             </label>
             <input
               type="text"
               value={formData.city}
               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-              className="input"
+              className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
               placeholder="Pune"
               required
             />
@@ -161,24 +161,24 @@ const Settings = () => {
         </div>
 
         {/* Health Profile */}
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
-              <Heart className="w-5 h-5 text-red-600" />
+            <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
+              <Heart className="w-5 h-5 text-red-400" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900">Health Profile</h2>
+            <h2 className="text-xl font-semibold text-white">Health Profile</h2>
           </div>
 
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Health Conditions (comma-separated)
               </label>
               <input
                 type="text"
                 value={formData.comorbidities}
                 onChange={(e) => setFormData({ ...formData, comorbidities: e.target.value })}
-                className="input"
+                className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                 placeholder="Diabetes, Asthma, Hypertension"
               />
               <p className="text-xs text-gray-500 mt-1">
@@ -187,27 +187,27 @@ const Settings = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Allergies (comma-separated)
               </label>
               <input
                 type="text"
                 value={formData.allergies}
                 onChange={(e) => setFormData({ ...formData, allergies: e.target.value })}
-                className="input"
+                className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                 placeholder="Pollen, Dust, Nuts"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Current Medications (comma-separated)
               </label>
               <input
                 type="text"
                 value={formData.medications}
                 onChange={(e) => setFormData({ ...formData, medications: e.target.value })}
-                className="input"
+                className="w-full px-4 py-3 bg-black border border-yellow-400/20 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white placeholder-gray-500"
                 placeholder="Metformin, Inhaler"
               />
             </div>
@@ -215,19 +215,19 @@ const Settings = () => {
         </div>
 
         {/* Notifications */}
-        <div className="card">
+        <div className="bg-gray-900 border border-yellow-400/20 rounded-xl p-6">
           <div className="flex items-center space-x-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
-              <Bell className="w-5 h-5 text-purple-600" />
+            <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <Bell className="w-5 h-5 text-purple-400" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900">Notifications</h2>
+            <h2 className="text-xl font-semibold text-white">Notifications</h2>
           </div>
 
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium text-gray-900">Email Notifications</p>
-                <p className="text-sm text-gray-600">Receive health reports and alerts via email</p>
+                <p className="font-medium text-white">Email Notifications</p>
+                <p className="text-sm text-gray-400">Receive health reports and alerts via email</p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -236,14 +236,14 @@ const Settings = () => {
                   onChange={(e) => setNotifications({ ...notifications, email: e.target.checked })}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-yellow-400/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-400"></div>
               </label>
             </div>
 
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium text-gray-900">WhatsApp Notifications</p>
-                <p className="text-sm text-gray-600">Get alerts on WhatsApp</p>
+                <p className="font-medium text-white">WhatsApp Notifications</p>
+                <p className="text-sm text-gray-400">Get alerts on WhatsApp</p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -252,14 +252,14 @@ const Settings = () => {
                   onChange={(e) => setNotifications({ ...notifications, whatsapp: e.target.checked })}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-yellow-400/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-400"></div>
               </label>
             </div>
 
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium text-gray-900">SMS Notifications</p>
-                <p className="text-sm text-gray-600">Receive text message alerts</p>
+                <p className="font-medium text-white">SMS Notifications</p>
+                <p className="text-sm text-gray-400">Receive text message alerts</p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -268,14 +268,14 @@ const Settings = () => {
                   onChange={(e) => setNotifications({ ...notifications, sms: e.target.checked })}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-yellow-400/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-400"></div>
               </label>
             </div>
 
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium text-gray-900">Push Notifications</p>
-                <p className="text-sm text-gray-600">Enable browser push notifications</p>
+                <p className="font-medium text-white">Push Notifications</p>
+                <p className="text-sm text-gray-400">Enable browser push notifications</p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -284,7 +284,7 @@ const Settings = () => {
                   onChange={(e) => setNotifications({ ...notifications, pushEnabled: e.target.checked })}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-yellow-400/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-400"></div>
               </label>
             </div>
           </div>
@@ -295,7 +295,7 @@ const Settings = () => {
           <button
             type="submit"
             disabled={loading}
-            className="btn btn-primary flex items-center space-x-2 px-8"
+            className="bg-yellow-400 text-black px-8 py-3 rounded-lg hover:bg-yellow-500 font-semibold shadow-yellow-400/40 shadow-md flex items-center space-x-2"
           >
             {loading ? (
               <>
