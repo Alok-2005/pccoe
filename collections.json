@@ -1,0 +1,127 @@
+{
+  "info": {
+    "name": "Climate-Health Companion API",
+    "description": "Complete API endpoints for Climate-Health Companion",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{BASE_URL}}/api/auth/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"name\": \"Test User\",\n  \"location\": {\n    \"city\": \"Pune\"\n  },\n  \"role\": \"citizen\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{BASE_URL}}/api/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{TOKEN}}"}],
+            "url": "{{BASE_URL}}/api/auth/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predictions",
+      "item": [
+        {
+          "name": "Get Risk Prediction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{TOKEN}}"}
+            ],
+            "url": "{{BASE_URL}}/api/predict",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"city\": \"Mumbai\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Prediction History",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{TOKEN}}"}],
+            "url": "{{BASE_URL}}/api/predict/history/{{USER_ID}}?limit=10"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Generate Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{TOKEN}}"}
+            ],
+            "url": "{{BASE_URL}}/api/reports/generate",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reportType\": \"daily\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get User Reports",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{TOKEN}}"}],
+            "url": "{{BASE_URL}}/api/reports/user/{{USER_ID}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Assistant",
+      "item": [
+        {
+          "name": "Chat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{TOKEN}}"}
+            ],
+            "url": "{{BASE_URL}}/api/assistant/chat",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Is it safe to jog outside today?\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {"key": "BASE_URL", "value": "http://localhost:5000"},
+    {"key": "TOKEN", "value": ""},
+    {"key": "USER_ID", "value": ""}
+  ]
+}

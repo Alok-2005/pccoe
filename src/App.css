@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+
+@theme {
+  --color-climate-primary: #00A676;
+  --color-climate-secondary: #004E64;
+}
+
+.navbar {
+  @apply bg-white shadow-md border-b border-gray-200;
+}
+
+.navbar-container {
+  @apply flex justify-between items-center px-6 py-4;
+}
+
+.navbar-brand {
+  @apply text-2xl font-bold text-climate-primary;
+}
+
+.sidebar {
+  @apply bg-gradient-to-b from-climate-primary to-blue-700 text-white w-64 min-h-screen;
+}
+
+.sidebar-item {
+  @apply px-6 py-3 hover:bg-blue-600 cursor-pointer transition-colors flex items-center gap-2;
+}
+
+.sidebar-item.active {
+  @apply bg-blue-900 border-r-4 border-climate-secondary;
+}
+
+.main-layout {
+  @apply flex;
+}
+
+.main-content {
+  @apply flex-1 p-6;
+}
+
+.dashboard-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+}
+
+.stat-card {
+  @apply bg-white rounded-lg shadow p-6 border-l-4;
+}
+
+.stat-card.critical {
+  @apply border-l-red-500;
+}
+
+.stat-card.warning {
+  @apply border-l-yellow-500;
+}
+
+.stat-card.success {
+  @apply border-l-green-500;
+}
+
+.stat-value {
+  @apply text-3xl font-bold mt-2;
+}
+
+.form-group {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block text-sm font-semibold mb-2;
+}
+
+.card-header {
+  @apply border-b border-gray-200 pb-4 mb-4;
+}
+
+.chart-container {
+  @apply bg-white rounded-lg shadow p-6;
+}
+
+.loading {
+  @apply flex justify-center items-center py-10;
+}
+
+.error-message {
+  @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded;
+}
+
+.success-message {
+  @apply bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded;
+}
+
+.modal-overlay {
+  @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50;
+}
+
+
+.modal {
+  @apply bg-white rounded-lg shadow-lg p-8 max-w-md w-full;
+}
+
+.badge {
+  @apply inline-block px-3 py-1 rounded-full text-sm font-semibold;
+}
+
+.badge-critical {
+  @apply bg-red-100 text-red-800;
+}
+
+.badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.badge-success {
+  @apply bg-green-100 text-green-800;
+}
